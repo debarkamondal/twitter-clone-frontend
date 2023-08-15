@@ -37,7 +37,7 @@ const Sidebar: FC<React.HTMLAttributes<HTMLDivElement>> = ({ className }) => {
 				</div>
 				<div className="menuContainer p-1">
 					{sidebarElements.map((element) => (
-						<div key={element.text} className="flex gap-5 my-7">
+						<div key={element.text} className="flex gap-5 my-8">
 							<span className="text-2xl">{element.icon}</span>
 							<span className="text-xl font-medium">{element.text}</span>
 						</div>

@@ -1,5 +1,10 @@
 import Image from "next/image";
+import FeedCard from "./components/FeedCard";
 
 export default function Home() {
-	return <main>HOME</main>;
+	return (
+		<main>
+			<FeedCard />
+		</main>
+	);
 }
