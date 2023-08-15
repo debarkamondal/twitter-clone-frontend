@@ -30,14 +30,17 @@ const sidebarElements: sidebarElementType[] = [
 
 const Sidebar: FC<React.HTMLAttributes<HTMLDivElement>> = ({ className }) => {
 	return (
-		<div className={`${className} p-4`}>
+		<div className={`${className} p-2 pr-4 `}>
 			<div className="px-2">
-				<div className="text-3xl mb-2">
+				<div className="text-3xl p-2 mb-2 hover:bg-gray-900 w-max rounded-full transition-all">
 					<BsTwitter />
 				</div>
-				<div className="menuContainer p-1">
+				<div className="menuContainer">
 					{sidebarElements.map((element) => (
-						<div key={element.text} className="flex gap-5 my-8">
+						<div
+							key={element.text}
+							className="flex gap-5 my-4 p-2 hover:bg-gray-900 w-max rounded-full items-center transition-all"
+						>
 							<span className="text-2xl">{element.icon}</span>
 							<span className="text-xl font-medium">{element.text}</span>
 						</div>

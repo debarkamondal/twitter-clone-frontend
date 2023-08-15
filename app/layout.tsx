@@ -18,7 +18,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.className} grid grid-cols-12 w-screen h-screen px-20`}
+				className={`${inter.className} grid px-24 grid-cols-12 w-screen h-screen`}
 			>
 				<Sidebar className="col-span-3 ml-24" />
 				<div className="col-span-6 border-gray-800 border-r-[0.5px] border-l-[0.5px]">
