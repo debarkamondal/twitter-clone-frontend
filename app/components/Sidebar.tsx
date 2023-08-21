@@ -10,6 +10,7 @@ import { RiFileList2Line } from "react-icons/ri";
 import { FiUsers } from "react-icons/fi";
 import { VscVerified } from "react-icons/vsc";
 import { CgMoreO } from "react-icons/cg";
+import { ProfileCard } from "./ProfileCard";
 
 type sidebarElementType = {
 	icon: JSX.Element;
@@ -30,7 +31,7 @@ const sidebarElements: sidebarElementType[] = [
 
 const Sidebar: FC<React.HTMLAttributes<HTMLDivElement>> = ({ className }) => {
 	return (
-		<div className={`${className} p-2 pr-4 `}>
+		<div className={`${className} p-2 pr-4 relative`}>
 			<div className="px-2">
 				<div className="text-3xl p-2 mb-2 hover:bg-gray-900 w-max rounded-full transition-all">
 					<BsTwitter />
@@ -50,6 +51,7 @@ const Sidebar: FC<React.HTMLAttributes<HTMLDivElement>> = ({ className }) => {
 			<button className="w-56 text-white bg-blue-500 rounded-full py-2 h-12 font-medium">
 				Post
 			</button>
+			<ProfileCard className="absolute bottom-0 flex gap-2 mb-4 w-full items-center" />
 		</div>
 	);
 };
