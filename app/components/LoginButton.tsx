@@ -4,7 +4,7 @@ import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { graphqlClient } from "@/clients/api";
 import { verifyUserGoogleTokenQuery } from "@/graphql/query/user";
 import { toast } from "react-hot-toast";
-import { useGetCurrentUser } from "./hooks/user";
+import { useGetCurrentUser } from "../hooks/user";
 import { useQueryClient } from "@tanstack/react-query";
 
 export const LoginButton = ({ children }: { children: React.ReactNode }) => {

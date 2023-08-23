@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Sidebar from "./components/Sidebar";
 import { AuthProvider } from "./providers/AuthProvider";
-import { LoginButton } from "./LoginButton";
+import { LoginButton } from "./components/LoginButton";
 import { QueryProvider } from "./providers/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,9 +30,11 @@ export default function RootLayout({
 							{children}
 						</div>
 						<div className="col-span-3">
-							<div className="flex flex-col items-center gap-2 p-4">
+							<div className="flex flex-col items-center text-center gap-2 p-4">
 								<LoginButton>
-									<h1 className="font-semibold text-2xl">New to twitter?</h1>
+									<h1 className="font-semibold text-2xl mb-2">
+										New to twitter?
+									</h1>
 								</LoginButton>
 							</div>
 						</div>
