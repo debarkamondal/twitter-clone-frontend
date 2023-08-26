@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { useGetCurrentUser } from "../hooks/user";
 import { BsImage } from "react-icons/bs";
 import { AiOutlineFileGif, AiOutlineUnorderedList } from "react-icons/ai";
@@ -8,9 +8,18 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { MdEventRepeat } from "react-icons/md";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
+import { useCreateTweet } from "../hooks/tweets";
 
 export const TweetModal = () => {
 	const { user } = useGetCurrentUser();
+	const { mutate } = useCreateTweet();
+
+	const [content, setContent] = useState("");
+	const handleCreateTweet = useCallback(() => {
+		mutate({
+			content,
+		});
+	}, [mutate, content]);
 	return (
 		<section className="grid grid-cols-12 grid-rows-4 h-48 border-b-[0.5px] border-b-gray-800 p-4 gap-2">
 			{user?.profileImgUrl && (
@@ -28,6 +37,8 @@ export const TweetModal = () => {
 					<IoIosArrowDown />
 				</span>
 				<input
+					value={content}
+					onChange={(e) => setContent(e.target.value)}
 					type="text"
 					placeholder="What's happening?"
 					className="bg-black h-20 text-xl"
@@ -43,7 +54,10 @@ export const TweetModal = () => {
 					<MdEventRepeat />
 					<HiOutlineLocationMarker />
 				</div>
-				<button className="w-16 font-semibold bg-blue-500 rounded-full">
+				<button
+					className="w-16 font-semibold bg-blue-500 rounded-full"
+					onClick={handleCreateTweet}
+				>
 					Post
 				</button>
 			</div>
