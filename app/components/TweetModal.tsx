@@ -13,15 +13,21 @@ import { useCreateTweet } from "../hooks/tweets";
 export const TweetModal = () => {
 	const { user } = useGetCurrentUser();
 	const { mutate } = useCreateTweet();
-
 	const [content, setContent] = useState("");
+
 	const handleCreateTweet = useCallback(() => {
 		mutate({
 			content,
 		});
 	}, [mutate, content]);
+	const handleImageUpload = useCallback(() => {
+		const input = document.createElement("input");
+		input.setAttribute("type", "file");
+		input.setAttribute("accept", "images/*");
+		input.click();
+	}, []);
 	return (
-		<section className="grid grid-cols-12 grid-rows-4 h-48 border-b-[0.5px] border-b-gray-800 p-4 gap-2">
+		<section className="grid grid-cols-12 grid-rows-4 h-min-48 border-b-[0.5px] border-b-gray-800 p-4 gap-2">
 			{user?.profileImgUrl && (
 				<Image
 					src={user?.profileImgUrl}
@@ -36,18 +42,17 @@ export const TweetModal = () => {
 					<span>Everyone</span>
 					<IoIosArrowDown />
 				</span>
-				<input
+				<textarea
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
-					type="text"
 					placeholder="What's happening?"
-					className="bg-black h-20 text-xl"
+					className="bg-black text-xl"
 				/>
 				<span className="text-blue-400">Everyone can reply</span>
 			</div>
 			<div className="col-span-11 flex justify-between">
-				<div className="flex gap-4 text-xl p-2 font-bold text-blue-400">
-					<BsImage />
+				<div className="flex gap-4 text-xl p-2 font-bold text-blue-400 cursor-pointer">
+					<BsImage onClick={handleImageUpload} />
 					<AiOutlineFileGif />
 					<AiOutlineUnorderedList />
 					<BsEmojiSmile />
@@ -55,7 +60,7 @@ export const TweetModal = () => {
 					<HiOutlineLocationMarker />
 				</div>
 				<button
-					className="w-16 font-semibold bg-blue-500 rounded-full"
+					className="w-16 font-semibold bg-blue-500 rounded-full cursor-pointer"
 					onClick={handleCreateTweet}
 				>
 					Post
