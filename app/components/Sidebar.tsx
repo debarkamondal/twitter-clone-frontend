@@ -32,7 +32,7 @@ const sidebarElements: sidebarElementType[] = [
 const Sidebar: FC<React.HTMLAttributes<HTMLDivElement>> = ({ className }) => {
   return (
     <nav
-      className={`${className} fixed bottom-0 w-full items-center border-t border-t-gray-600 p-2 md:relative md:flex md:flex-col md:items-end`}
+      className={`${className} fixed bottom-0 flex w-full items-center border-t border-t-gray-600 p-2 md:relative md:flex md:flex-col lg:items-end`}
     >
       <div className="w-full md:w-fit">
         <div className="mb-2 hidden w-max rounded-full p-2 text-3xl transition-all hover:bg-gray-900 md:block">
