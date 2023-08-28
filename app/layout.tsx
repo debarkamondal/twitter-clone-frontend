@@ -26,10 +26,10 @@ export default function RootLayout({
         <QueryProvider>
           <AuthProvider>
             <Sidebar className="md:col-span-1 lg:col-span-3" />
-            <div className=" h-full border-l-[0.5px] border-r-[0.5px] border-gray-800 md:col-span-5 md:max-w-2xl md:place-self-center lg:col-span-6">
+            <div className=" h-full w-full border-l-[0.5px] border-r-[0.5px] border-gray-800 md:col-span-5 md:max-w-2xl md:place-self-center lg:col-span-6">
               {children}
             </div>
-            <div className="hidden lg:col-span-3">
+            <div className="hidden md:block lg:col-span-3">
               <div className="flex flex-col items-center gap-2 p-4 text-center ">
                 <LoginButton>
                   <h1 className="mb-2 text-2xl font-semibold">
