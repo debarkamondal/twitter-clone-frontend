@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import { useGetCurrentUser } from "../hooks/user";
+import { useGetUserById } from "../hooks/user";
 import FeedCard from "./FeedCard";
 import { Tweet } from "@/gql/graphql";
 
-const UserTweets = () => {
-  const { user } = useGetCurrentUser();
+const UserTweets = ({ id }: { id: string }) => {
+  const { user } = useGetUserById(id);
   const tweets = user?.tweets;
   return (
     <>

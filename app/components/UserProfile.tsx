@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { useGetCurrentUser } from "../hooks/user";
+import { useGetUserById } from "../hooks/user";
 
-const UserProfile = () => {
-  const { user } = useGetCurrentUser();
+const UserProfile = ({ id }: { id: string }) => {
+  const { user } = useGetUserById(id);
 
   return (
     <section className="border-b border-gray-600">
