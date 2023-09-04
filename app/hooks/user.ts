@@ -1,4 +1,4 @@
-import { graphqlClient } from "@/clients/api";
+import { graphqlClient, queryClient } from "@/clients/api";
 import { getCurrentUserQuery, getUserByIdQuery } from "@/graphql/query/user";
 import { useQuery } from "@tanstack/react-query";
 

@@ -35,8 +35,15 @@ export type Query = {
   __typename?: 'Query';
   getAllTweets?: Maybe<Array<Maybe<Tweet>>>;
   getCurrentUser?: Maybe<User>;
+  getTweetImgPresignedUrl?: Maybe<Scalars['String']['output']>;
   getUserById: User;
   verifyGoogleToken?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type QueryGetTweetImgPresignedUrlArgs = {
+  ImgName: Scalars['String']['input'];
+  ImgType: Scalars['String']['input'];
 };
 
 
