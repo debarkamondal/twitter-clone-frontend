@@ -56,7 +56,7 @@ export const TweetModal = () => {
     input.setAttribute("accept", "images/*");
     input.addEventListener("change", handleFileInput(input));
     input.click();
-  }, []);
+  }, [handleFileInput]);
   return (
     <section className="h-min-48 grid auto-cols-min grid-cols-12 grid-rows-4 gap-2 border-b-[0.5px] border-b-gray-800 p-4">
       {user?.profileImgUrl && (
