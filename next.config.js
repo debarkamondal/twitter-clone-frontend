@@ -6,6 +6,7 @@ const nextConfig = {
       "avatars.githubusercontent.com",
       "lh3.googleusercontent.com",
       "images.unsplash.com",
+      "dezire-twitter-clone-dev.s3.ap-south-1.amazonaws.com",
     ],
   },
 };

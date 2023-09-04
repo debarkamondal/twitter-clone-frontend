@@ -36,6 +36,14 @@ const FeedCard: React.FC<feedCardProps> = ({ tweet }) => {
         </Link>
         <span className="mx-3 text-gray-600">@debarkamondal</span>
         <div className="my-1">{tweet.content}</div>
+        {tweet.imgUrl && (
+          <Image
+            src={tweet.imgUrl}
+            alt="tweet image"
+            height={200}
+            width={300}
+          />
+        )}
       </div>
       <div className="col-span-11 col-start-2 flex items-center justify-between text-xl text-gray-600">
         <span className="flex items-center gap-2">
