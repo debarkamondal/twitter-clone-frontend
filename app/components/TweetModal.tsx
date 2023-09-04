@@ -16,7 +16,7 @@ export const TweetModal = () => {
   const { user } = useGetCurrentUser();
   const { mutate } = useCreateTweet();
   const [content, setContent] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
+  const [imgUrl, setImgUrl] = useState<string>();
 
   const handleCreateTweet = useCallback(() => {
     mutate({
@@ -58,7 +58,7 @@ export const TweetModal = () => {
     input.click();
   }, [handleFileInput]);
   return (
-    <section className="h-min-48 grid auto-cols-min grid-cols-12 grid-rows-4 gap-2 border-b-[0.5px] border-b-gray-800 p-4">
+    <section className="h-min-48 grid grid-cols-12  gap-2 border-b-[0.5px] border-b-gray-800 p-4">
       {user?.profileImgUrl && (
         <Image
           src={user?.profileImgUrl}
@@ -68,7 +68,7 @@ export const TweetModal = () => {
           className="col-span-1 row-span-4 rounded-full"
         />
       )}
-      <div className="col-span-11 row-span-3 flex flex-col gap-2 border-b border-b-gray-800 p-2">
+      <div className="col-span-11 flex flex-col gap-2 border-b border-b-gray-800 p-2">
         <span className="flex w-max items-center gap-2 rounded-full border border-gray-600 px-4 font-semibold text-blue-400">
           <span>Everyone</span>
           <IoIosArrowDown />

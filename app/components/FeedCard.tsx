@@ -13,7 +13,6 @@ interface feedCardProps {
 }
 
 const FeedCard: React.FC<feedCardProps> = ({ tweet }) => {
-  console.log(tweet.author);
   return (
     <div className="grid cursor-pointer grid-cols-12 gap-3 border-b-[0.5px] border-gray-800 p-4 transition-all hover:bg-gray-900/20">
       {tweet.author?.profileImgUrl && (
