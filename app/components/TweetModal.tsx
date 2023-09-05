@@ -14,16 +14,18 @@ import { getTweetImgPresignedUrlQuery } from "@/graphql/query/tweets";
 
 export const TweetModal = () => {
   const { user } = useGetCurrentUser();
-  const { mutate } = useCreateTweet();
+  const { mutateAsync } = useCreateTweet();
   const [content, setContent] = useState("");
   const [imgUrl, setImgUrl] = useState<string>();
 
   const handleCreateTweet = useCallback(() => {
-    mutate({
+    mutateAsync({
       imgUrl,
       content,
     });
-  }, [mutate, content]);
+    setContent("");
+    setImgUrl("");
+  }, [mutateAsync, content]);
 
   const handleFileInput = useCallback((input: HTMLInputElement) => {
     return async (event: Event) => {
