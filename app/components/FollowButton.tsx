@@ -1,46 +1,52 @@
 import React, { HTMLAttributes, useCallback, useMemo } from "react";
 import { useGetCurrentUser } from "../hooks/user";
-import { graphqlClient } from "@/clients/api";
+import { graphqlClient, queryClient } from "@/clients/api";
 import {
   followUserMutation,
   unfollowUserMutation,
 } from "@/graphql/mutation/user";
 import { User } from "@/gql/graphql";
-import { useQueryClient } from "@tanstack/react-query";
 
 interface FollowButtonProps extends HTMLAttributes<HTMLButtonElement> {
   user: User;
 }
 
 const FollowButton: React.FC<FollowButtonProps> = ({ className, user }) => {
-  const queryClient = useQueryClient();
-  const currentUser = useGetCurrentUser().user;
+  const { user: currentUser } = useGetCurrentUser();
   const amIfollowing = useMemo(() => {
-    // console.log(user?.id, currentUser?.id);
     if (!user) return false;
-    return user.followers?.findIndex(
-      (element) => element?.id === currentUser?.id,
-    ) === -1
-      ? false
-      : true;
-    // if (user.followers?.findIndex((element) => element?.id === currentUser?.id))
-    //   return true;
-    // else false;
-  }, [currentUser?.id, user?.id]);
-  const handleFollowUnfollow = useCallback(async () => {
+    return currentUser?.following?.findIndex(
+      (element) => element?.id === user?.id,
+    ) !== -1
+      ? true
+      : false;
+  }, [currentUser?.following, user?.id]);
+
+  const handleFollow = useCallback(async () => {
     if (!user?.id) return;
-    await graphqlClient.request(
-      amIfollowing ? unfollowUserMutation : followUserMutation,
-      { to: user.id },
-    );
+    await graphqlClient.request(followUserMutation, { to: user.id });
     await queryClient.invalidateQueries(["getCurrentUser"]);
-  }, [currentUser?.id, user?.id]);
-  return (
+    await queryClient.invalidateQueries(["getUserById"]);
+  }, [queryClient, user?.id]);
+  const handleUnfollow = useCallback(async () => {
+    if (!user?.id) return;
+    await graphqlClient.request(unfollowUserMutation, { to: user.id });
+    await queryClient.invalidateQueries(["getCurrentUser"]);
+    await queryClient.invalidateQueries(["getUserById"]);
+  }, [queryClient, user?.id]);
+  return !amIfollowing ? (
     <button
       className={`${className} rounded-full bg-white p-1 px-2 font-bold text-black`}
-      onClick={handleFollowUnfollow}
+      onClick={handleFollow}
     >
-      {amIfollowing ? "Unfollow" : "Follow"}
+      Follow
+    </button>
+  ) : (
+    <button
+      className={`${className} rounded-full bg-white p-1 px-2 font-bold text-black`}
+      onClick={handleUnfollow}
+    >
+      Unfollow
     </button>
   );
 };
