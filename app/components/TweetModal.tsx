@@ -25,7 +25,7 @@ export const TweetModal = () => {
     });
     setContent("");
     setImgUrl("");
-  }, [mutateAsync, content]);
+  }, [mutateAsync, content, imgUrl]);
 
   const handleFileInput = useCallback((input: HTMLInputElement) => {
     return async (event: Event) => {

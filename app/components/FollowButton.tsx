@@ -20,20 +20,20 @@ const FollowButton: React.FC<FollowButtonProps> = ({ className, user }) => {
     ) !== -1
       ? true
       : false;
-  }, [currentUser?.following, user?.id]);
+  }, [currentUser?.following, user]);
 
   const handleFollow = useCallback(async () => {
     if (!user?.id) return;
     await graphqlClient.request(followUserMutation, { to: user.id });
     await queryClient.invalidateQueries(["getCurrentUser"]);
     await queryClient.invalidateQueries(["getUserById"]);
-  }, [queryClient, user?.id]);
+  }, [user?.id]);
   const handleUnfollow = useCallback(async () => {
     if (!user?.id) return;
     await graphqlClient.request(unfollowUserMutation, { to: user.id });
     await queryClient.invalidateQueries(["getCurrentUser"]);
     await queryClient.invalidateQueries(["getUserById"]);
-  }, [queryClient, user?.id]);
+  }, [user?.id]);
   return !amIfollowing ? (
     <button
       className={`${className} rounded-full bg-white p-1 px-2 font-bold text-black`}
