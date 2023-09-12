@@ -1,19 +1,19 @@
+import type { CodegenConfig } from "@graphql-codegen/cli";
 
-import type { CodegenConfig } from '@graphql-codegen/cli';
-
+const backendURL = "https://d1hednii5lkne2.cloudfront.net/graphql";
 const config: CodegenConfig = {
   overwrite: true,
-  schema: "http://localhost:8000/graphql",
+  schema: backendURL,
   documents: "**/*.{ts,tsx}",
   generates: {
     "gql/": {
       preset: "client",
-      plugins: []
+      plugins: [],
     },
     "./graphql.schema.json": {
-      plugins: ["introspection"]
-    }
-  }
+      plugins: ["introspection"],
+    },
+  },
 };
 
 export default config;
