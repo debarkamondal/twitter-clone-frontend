@@ -13,6 +13,13 @@ export const getAllTweetsQuery = graphql(`
         lastName
         profileImgUrl
       }
+      likes {
+        liker {
+          id
+          firstName
+          lastName
+        }
+      }
     }
   }
 `);
