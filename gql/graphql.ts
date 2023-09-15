@@ -21,6 +21,10 @@ export type CreateTweetData = {
   imgUrl?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type LikeUnlikeTweetData = {
+  tweetId: Scalars['String']['input'];
+};
+
 export type Likes = {
   __typename?: 'Likes';
   liker?: Maybe<User>;
@@ -33,7 +37,9 @@ export type Mutation = {
   __typename?: 'Mutation';
   createTweet?: Maybe<Tweet>;
   followUser?: Maybe<Scalars['Boolean']['output']>;
+  likeTweet?: Maybe<Tweet>;
   unfollowUser?: Maybe<Scalars['Boolean']['output']>;
+  unlikeTweet?: Maybe<Tweet>;
 };
 
 
@@ -47,8 +53,18 @@ export type MutationFollowUserArgs = {
 };
 
 
+export type MutationLikeTweetArgs = {
+  payload: LikeUnlikeTweetData;
+};
+
+
 export type MutationUnfollowUserArgs = {
   to: Scalars['ID']['input'];
+};
+
+
+export type MutationUnlikeTweetArgs = {
+  payload: LikeUnlikeTweetData;
 };
 
 export type Query = {
@@ -96,6 +112,20 @@ export type User = {
   profileImgUrl?: Maybe<Scalars['String']['output']>;
   tweets?: Maybe<Array<Maybe<Tweet>>>;
 };
+
+export type LikeTweetMutationVariables = Exact<{
+  payload: LikeUnlikeTweetData;
+}>;
+
+
+export type LikeTweetMutation = { __typename?: 'Mutation', likeTweet?: { __typename?: 'Tweet', id: string, content: string, imgUrl?: string | null, author?: { __typename?: 'User', id: string, firstName: string, lastName?: string | null, profileImgUrl?: string | null } | null, likes?: Array<{ __typename?: 'Likes', liker?: { __typename?: 'User', id: string, firstName: string, lastName?: string | null } | null } | null> | null } | null };
+
+export type UnlikeTweetMutationVariables = Exact<{
+  payload: LikeUnlikeTweetData;
+}>;
+
+
+export type UnlikeTweetMutation = { __typename?: 'Mutation', unlikeTweet?: { __typename?: 'Tweet', id: string, content: string, imgUrl?: string | null, author?: { __typename?: 'User', id: string, firstName: string, lastName?: string | null, profileImgUrl?: string | null } | null, likes?: Array<{ __typename?: 'Likes', liker?: { __typename?: 'User', id: string, firstName: string, lastName?: string | null } | null } | null> | null } | null };
 
 export type CreateTweetMutationVariables = Exact<{
   payload: CreateTweetData;
@@ -151,6 +181,8 @@ export type GetUserByIdQueryVariables = Exact<{
 export type GetUserByIdQuery = { __typename?: 'Query', getUserById: { __typename?: 'User', id: string, email: string, firstName: string, lastName?: string | null, profileImgUrl?: string | null, tweets?: Array<{ __typename?: 'Tweet', id: string, content: string, imgUrl?: string | null, author?: { __typename?: 'User', id: string, firstName: string, lastName?: string | null, profileImgUrl?: string | null } | null } | null> | null, followers?: Array<{ __typename?: 'User', firstName: string, lastName?: string | null, id: string } | null> | null, following?: Array<{ __typename?: 'User', firstName: string, lastName?: string | null, id: string } | null> | null } };
 
 
+export const LikeTweetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"LikeTweet"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"payload"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LikeUnlikeTweetData"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"likeTweet"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"payload"},"value":{"kind":"Variable","name":{"kind":"Name","value":"payload"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"imgUrl"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"profileImgUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"liker"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]}}]} as unknown as DocumentNode<LikeTweetMutation, LikeTweetMutationVariables>;
+export const UnlikeTweetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UnlikeTweet"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"payload"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LikeUnlikeTweetData"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unlikeTweet"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"payload"},"value":{"kind":"Variable","name":{"kind":"Name","value":"payload"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"imgUrl"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"profileImgUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"liker"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UnlikeTweetMutation, UnlikeTweetMutationVariables>;
 export const CreateTweetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateTweet"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"payload"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateTweetData"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createTweet"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"payload"},"value":{"kind":"Variable","name":{"kind":"Name","value":"payload"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateTweetMutation, CreateTweetMutationVariables>;
 export const FollowUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"followUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"to"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"followUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"to"},"value":{"kind":"Variable","name":{"kind":"Name","value":"to"}}}]}]}}]} as unknown as DocumentNode<FollowUserMutation, FollowUserMutationVariables>;
 export const UnfollowUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"unfollowUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"to"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unfollowUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"to"},"value":{"kind":"Variable","name":{"kind":"Name","value":"to"}}}]}]}}]} as unknown as DocumentNode<UnfollowUserMutation, UnfollowUserMutationVariables>;
